@@ -16,17 +16,17 @@ If I give it an input, it will generate an output. If it generates and output it
 
 #### Example : For Birthday Problem(finding two person the class has the same birthday)
 
--Maintain records
+    -Maintain records
 
--Interview students in some order 
+    -Interview students in some order 
 
-	-check if birthday in record
+	    -check if birthday in record
 
-		-if so return pair
+		    -if so return pair
 
-	-add new student to record
+	    -add new student to record
 
--Return None
+    -Return None
 
 
 **Correctness**
@@ -35,9 +35,7 @@ Inductive Hypothesis: if first k students contain match algorithm returns a matc
 
 Base Case : k = 0 Because with 0 inductive hypothisesis is true just because initial predicate is false
 
-Assume Inductive Hypothesis true for k = k'  { if k' contains match -> already returned by Inductive
-
-												else if k'+1 contains match by Inductive algorithm k'+1 against all students }
+Assume Inductive Hypothesis true for k = k'  { if k' contains match -> already returned by Inductive else if k'+1 contains match by Inductive algorithm k'+1 against all students }
 
 #### Efficiency
 
