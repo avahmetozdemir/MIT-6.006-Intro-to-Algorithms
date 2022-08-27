@@ -76,3 +76,118 @@ Expect performance to depend on size of our input. We usually use (n) for what t
 - integer arithmetic
 - logical operations
 - bitwise operation , **those are the operations that available to me on most CPU's.** 
+
+## Lecture 2 - Data Structures and Dynamic Arrays
+
+### Interface(API/ADT)  vs. Data Structure 
+
+The idea is that an interface says what you want to do, a data structure says how you do it. 
+
+**Interface(API/ADT)** 
+- specipication
+- what data can store
+- what operations are supported what they mean
+- problem
+
+**Data Structure**
+- representatiton
+- how to data store
+- algorithms to support operations
+- solution
+
+**Two main interfaces :** 
+- set
+- sequence
+
+**Two main data structure approaches:**
+- arrays
+- pointer based
+
+#### Static Sequence Interface
+
+**maintain  a sequence of items x0,x1, x2, x3, xn-1 subject to these operations:**
+
+- build(x) : make new DS for items in X
+- length() : return n
+- iter_seq(): output x0,x1,..., xn-1 in sequence order
+- get_at(): return xi (index i)
+- set_at(i,x) : set xi to x 
+- get_first/last()
+- set_first/last(x)
+
+**Solution(natural) of these interface :** Static Arrays
+
+O(1) per  get_at/set_at/len ops. 
+
+O(n) per build/iter_seq
+
+**Memory Allocation Model :** allocate array of size n in θ(n) time  
+
+**Key :** word RAM model of computation 
+
+- memory : 	array  of w-bit words 
+![w-bit](https://www.researchgate.net/profile/Kunihiko-Sadakane/publication/47702468/figure/fig1/AS:644645289742340@1530706822550/A-word-is-w-consecutive-bits-of-memory-and-a-segment-consists-of-b-w-4-consecutive.png)
+
+- "array" : consecutive chunk of memory
+
+-> array[i] === memory[address(array)+ i ]
+
+-> array access is O(1) time. 
+
+!!! Assume w >= lg n  /// w : machine word size , in real computers this is currently 64 
+
+#### Dynamic Sequence Interface
+
+**static sequence, plus :**
+
+- insert_at(i,x) : make x the new xi, shifting xi -> xi+1 -> xi+2 ... -> xn-1->xn'-1(n': n+1) ----> |x0|x1|x2|x3|x4|...|x n-1| -- I wanna insert x to position 2 -- |x0|x1|x2=x|x3'(old x2)|x4'(old x3)|...|x n-1'| 
+
+!insert last changes anything but insert first changes all of them
+
+- delete_at(i) : shift xi <- xi+1 <- ... <- xn'+1(n':n+1) <- xn-1
+
+- insert/delete_fisrt/last(x)/()
+
+### Linked List : 
+
+![linkedlist](https://media.geeksforgeeks.org/wp-content/cdn-uploads/gq/2013/03/Linkedlist.png)
+
+#### Dynamic Sequence Operations Static Array vs. Linked List : 
+
+**static array**
+
+- insert/delete_at() cost θ(n) time  
+
+1.shifting
+2.allocation/ copying
+
+!!!So static arrays are really bad for dyncamic ops. but we could do them.
+!!! But they are good at get/set_at() ops.
+
+**linked list**
+
+- insert/delete_first() cost O(1) time
+- get/set_at() need O(i) time and worst case O(n) time
+
+!!! Efficient at insert/delete_at but not effcient get/set_at() ops
+
+**!!! Linked lists are great if you are working on the ends even dynamically, Arrays are great if you are doing random access and nothing dynamic (adding or deleting)**
+
+**Dynamic Arrays(python lists)**
+
+- relax constraint size (array) = n <- # items in sequence 
+- enforce size  = O(n) 
+- maintain  A[i] = x
+- insert_last(x) : add to end unless n = size
+- if n = size allocate new array of size*2
+- n insert_last() from empty array resize at n=1, 2, 4, 8, 16...  -> size cost  = O(1+2+4+8+16+...+ n)  =  O(sum 2i)  =O(2 lg n) = O(n)
+
+**Amortization :** operations takes T(n) amortized time if any k operations take =< k T(n) time (averaging over operation sequence)
+
+### Worst Cases O(.): 
+
+**array :** static(get_at(x), set_at(i,x))-> **1** -- Dynamic (insert_first(), delete_fisrt())-> **n** --  Dynamic (insert_last(), delete_last())-> **n** -- Dynamic (insert_at(), delete_at())-> n
+	
+**linked list :** static(get_at(x), set_at(i,x))-> **n** -- Dynamic (insert_first(), delete_fisrt())-> **1** --  Dynamic (insert_last(), delete_last())-> **n** -- Dynamic (insert_at(), delete_at())-> **n**
+	
+**dynamic array :** static(get_at(x), set_at(i,x))-> **1** -- Dynamic (insert_first(), delete_fisrt())-> **n** --  Dynamic (insert_last(), delete_last())-> **1(a)** -- Dynamic (insert_at(), delete_at())-> **n**
