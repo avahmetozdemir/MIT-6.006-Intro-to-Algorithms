@@ -126,7 +126,7 @@ O(n) per build/iter_seq
 **Key :** word RAM model of computation 
 
 - memory : 	array  of w-bit words 
-![w-bit](https://www.researchgate.net/profile/Kunihiko-Sadakane/publication/47702468/figure/fig1/AS:644645289742340@1530706822550/A-word-is-w-consecutive-bits-of-memory-and-a-segment-consists-of-b-w-4-consecutive.png)
+![w-bit](https://learnworthy.net/wp-content/uploads/2020/03/The-amazing-history-of-the-Data-Byte.png)
 
 - "array" : consecutive chunk of memory
 
@@ -191,3 +191,8 @@ O(n) per build/iter_seq
 **linked list :** static(get_at(x), set_at(i,x))-> **n** -- Dynamic (insert_first(), delete_fisrt())-> **1** --  Dynamic (insert_last(), delete_last())-> **n** -- Dynamic (insert_at(), delete_at())-> **n**
 	
 **dynamic array :** static(get_at(x), set_at(i,x))-> **1** -- Dynamic (insert_first(), delete_fisrt())-> **n** --  Dynamic (insert_last(), delete_last())-> **1(a)** -- Dynamic (insert_at(), delete_at())-> **n**
+
+## Lecture 3 - Problem Session 1: Asymptotic Behavior of Functions and Double-ended...
+
+
+
