@@ -194,5 +194,46 @@ O(n) per build/iter_seq
 
 ## Lecture 3 - Problem Session 1: Asymptotic Behavior of Functions and Double-ended...
 
+![lecture-3](https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/notes-2.png?raw=true)
+
+#### first-operation
+
+**swap-ends(D)**
+
+**Q:** Describe an algrithm to swap first and the last items
+
+**A:** x1 = D.delete_first()
+	   x2 = D.delete_last()
+	   D.insert_front(x2)
+	   D.insert_last(x1)
+#### second-operation
 
 
+**shift_left(D,k)**  kth item will be the last item and k+1 item become the first item
+
+**A:** if k < 1 or k > len(D) -1 
+		return
+
+		x.delete_first()
+		D.insert_last()
+		shift_left(D,k-1) -recursive func.-
+
+**Amortization:** You can do some work up front by making this thing make some of these operations faster. What amortization means is, if I have, say , a dynamic array where  I'm going to be inserting things at the end, sometimes when I add sth, I'm gonna spent a lot of time to add that thing, I'm going to spend linear time. But what's the point of this data structure in the first place? The point is that I went to be able to potentially add a lot of things to this thing. Amortization is saying that, even though sometimes this operations will be bad, averaged over many operations, this is going to have a better running time. That's the amortization. Formally in amortized some amount of time -lets say k time- that means that if I do n operations, the total time it takes me to do all of those operations is not going to be more than n times k. So on average its gonna take me K time. 
+
+Amortization means that you have a usually a DS that you are operating on, and you are doing operations multiple times and you are getting a benefit, because you are doing that operations lots of times. 
+
+#### third-operation
+
+![dynamic-arrays](https://media.geeksforgeeks.org/wp-content/uploads/darray.png)
+
+#### fourth-operation
+
+![linked-list](https://www.alphacodingskills.com/imgfiles/linked-list.PNG)
+
+	1.Find nth node
+	2.reverse next pointers of everything after nth
+	3.cleans up ends 
+
+	(In video, this pseudo code is written on Python)
+
+	
