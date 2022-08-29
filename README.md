@@ -202,10 +202,12 @@ O(n) per build/iter_seq
 
 **Q:** Describe an algrithm to swap first and the last items
 
-**A:** x1 = D.delete_first()
+**A:** 
+	   x1 = D.delete_first()
 	   x2 = D.delete_last()
 	   D.insert_front(x2)
 	   D.insert_last(x1)
+	   
 #### second-operation
 
 
@@ -236,4 +238,3 @@ Amortization means that you have a usually a DS that you are operating on, and y
 
 	(In video, this pseudo code is written on Python)
 
-	
