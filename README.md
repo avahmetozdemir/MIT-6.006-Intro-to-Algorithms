@@ -203,19 +203,21 @@ O(n) per build/iter_seq
 **Q:** Describe an algrithm to swap first and the last items
 
 **A:** 
-	   x1 = D.delete_first()
-	   x2 = D.delete_last()
-	   D.insert_front(x2)
-	   D.insert_last(x1)
-	   
+
+	x1 = D.delete_first()
+	x2 = D.delete_last()
+	D.insert_front(x2)
+	D.insert_last(x1)
+
 #### second-operation
 
 
 **shift_left(D,k)**  kth item will be the last item and k+1 item become the first item
 
-**A:** if k < 1 or k > len(D) -1 
-		return
+**A:** 
 
+		if k < 1 or k > len(D) -1 
+		return
 		x.delete_first()
 		D.insert_last()
 		shift_left(D,k-1) -recursive func.-
