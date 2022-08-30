@@ -287,16 +287,17 @@ Amortization means that you have a usually a DS that you are operating on, and y
 			for B in permutatitons(A): 
 				if is_sorted(B)
 					return B
-1.Enumerute permutations Ω(n!)
-2.Check if the permutation is sorted O(n) (check list with this -> for i = 1 to n -1 B[i] =< B[i+1])
+
+- 1.Enumerute permutations Ω(n!)
+- 2.Check if the permutation is sorted O(n) (check list with this -> for i = 1 to n -1 B[i] =< B[i+1])
 
 **--> Ω(n! * n)**
 
 ### Selection Sort Example :
 
-1.Found biggest with index =< i
-2.Swap 
-3.Sort 1,...,i-1
+- 1.Found biggest with index =< i
+- 2.Swap 
+- 3.Sort 1,...,i-1
 
 #### Helper Function for Selection Sort
 
@@ -342,5 +343,5 @@ Amortization means that you have a usually a DS that you are operating on, and y
 					A[b-1] = R[j-1]
 					j = j -1
 				merge(L,R,A,i,j,a,b-1)
-				
+
 - The array is initially divided into two equal halves and then they are combined in a sorted manner. We can think of it as a recursive algorithm that continuously splits the array in half until it cannot be further divided. This means that if the array becomes empty or has only one element left, the dividing will stop, i.e. it is the base case to stop the recursion. If the array has multiple elements, we split the array into halves and recursively invoke the merge sort on each of the halves. Finally, when both the halves are sorted, the merge operation is applied. Merge operation is the process of taking two smaller sorted arrays and combining them to eventually make a larger one.
