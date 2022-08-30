@@ -240,3 +240,107 @@ Amortization means that you have a usually a DS that you are operating on, and y
 
 	(In video, this pseudo code is written on Python)
 
+## Lecture 4 - Sets and Sorting
+
+#### Review : 
+
+- Interface : Colletion of operations(e.g., sequence & set)
+- Data Structure : Way to store data that supports a set of operations
+
+### Set Interface :
+
+#### Container
+- build(A) | given an iterable A, build sequence from items in A 
+- len()    | return the number of stored items
+
+#### Static
+
+- find(k)  | return the stored item with key k
+
+#### Dynamic
+
+- insert(x) | add x to set(replace item with key x.key if one already exits)
+- delete(k) | remove and return the stored item with key k 
+
+#### Order
+
+- iter_ord() | return the stored items one-by-one in key order
+- find_min()| return the stored item with the smallest key
+- find_max() |  return the stored item with largest key
+- find_next(k) | return the stored item with smallest key larger than k
+- find_prev(k) | return the stored item with largest key smaller than k
+
+![operations](https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/notes-4.png?raw=true)
+
+### Sorting Vocabulary:
+
+- **Destructive :** Overwrites the input array
+- **In place :** Uses O(1) extra space
+
+**In  :** Array of n numbers/keys - A
+**Out :** Sorted Array - B
+
+#### Permutation Sort :
+
+		def permutatiton_sort(A) : 
+			'''Sort A'''
+			for B in permutatitons(A): 
+				if is_sorted(B)
+					return B
+1.Enumerute permutations Ω(n!)
+2.Check if the permutation is sorted O(n) (check list with this -> for i = 1 to n -1 B[i] =< B[i+1])
+
+**--> Ω(n! * n)**
+
+### Selection Sort Example :
+
+1.Found biggest with index =< i
+2.Swap 
+3.Sort 1,...,i-1
+
+#### Helper Function for Selection Sort
+
+		def prefix_max(A, i)
+			'''Return index of maximum in A[:i+1]'''
+			if i>0
+				j = prefix_max(A,i-1)
+				if A[i] < A[j]
+				return j
+			return i
+
+#### Selection Sort
+
+		def selection_sort(A,i = None) : 
+			'''Sort A[:i+1] '''
+			if i is None: i = len(A) -1
+			if i > 0
+				j = prefix_max(A,i)
+				A[i], A[j] = A[j], A[i]
+				selection_sort(A, i - 1)
+
+### Merge Sort Example: 
+
+	def merge_sort(A, a= 0, b=0)
+		''' Sort A[a:b] '''
+		if b is None: b = len(A)
+		if 1 < b-a: 
+			c  = (a+b+1)//2
+			merge_sort(A, a,c)
+			merge_sort(A, c,b)
+			L, R = A[a:c], A[c:b]
+			merge(L,R,A, len(L), len(R), a,b)
+
+#### Merge Function:
+
+		def merge(L,R,A,i,j,a,b):
+			'''Merge Sorted L[:i] and R[:j] into A[a:b]'''
+			if a < b 
+				if(j =< 0) or (i > 0  and L[i-1 ] > R[j-1])
+					A[b -1] =L [i-1]
+					i = i -1
+				else :
+					A[b-1] = R[j-1]
+					j = j -1
+				merge(L,R,A,i,j,a,b-1)
+				
+- The array is initially divided into two equal halves and then they are combined in a sorted manner. We can think of it as a recursive algorithm that continuously splits the array in half until it cannot be further divided. This means that if the array becomes empty or has only one element left, the dividing will stop, i.e. it is the base case to stop the recursion. If the array has multiple elements, we split the array into halves and recursively invoke the merge sort on each of the halves. Finally, when both the halves are sorted, the merge operation is applied. Merge operation is the process of taking two smaller sorted arrays and combining them to eventually make a larger one.
