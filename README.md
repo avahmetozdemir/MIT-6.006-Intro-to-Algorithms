@@ -345,3 +345,35 @@ Amortization means that you have a usually a DS that you are operating on, and y
 				merge(L,R,A,i,j,a,b-1)
 
 - The array is initially divided into two equal halves and then they are combined in a sorted manner. We can think of it as a recursive algorithm that continuously splits the array in half until it cannot be further divided. This means that if the array becomes empty or has only one element left, the dividing will stop, i.e. it is the base case to stop the recursion. If the array has multiple elements, we split the array into halves and recursively invoke the merge sort on each of the halves. Finally, when both the halves are sorted, the merge operation is applied. Merge operation is the process of taking two smaller sorted arrays and combining them to eventually make a larger one.
+
+## Lecture 5 - Hashing
+
+- Prove that you can't find(k) faster than O(logn)
+- Show how to find (k) faster than O(logn)
+
+**Comparison Model  :** The items,the objects I'm storing, I can kind of think of them as black boxes. I dont get to touch these things, except the only way that I can distinguish between them is to say , given a key and an item, or two items, I can do a comparison on these keys. Like are these keys the same? Is this key bigger than this one? -> =, < ,>, =< ,>=, != . There is only one thing that I can branch on. It's gonna branch two different lines. It's either true and I do some other computation, or it's false and I'll do a different set of computation.
+
+![decision-tree](https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/decision-tree.png?raw=true)
+
+**Why it needs n +1 leaves ? =>** If it's a correct algorithm it needs to be able to return any of the n items that I'm storing or say that the key I am looking for is not there. 
+
+**What is the minimum height of any binary tree that has at least  n + 1 leaves ->**  min height : θ(logn) (at least logn height)
+
+**Direct Access Array :** | | | | | | | | | | 10th = x | | | | |  x.key = 10
+
+- we assume integer keys
+
+![set-interface](https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/direct-access-array.png?raw=true)
+
+![chaining](https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/chaining-.png?raw=true)
+
+
+**Division hash function :**  
+		
+		h(k)  = k mod m  
+
+**Universal hash function :** 
+			
+		hab(k) = (((ak+b) mod p) mod m)
+
+		H(p,m) = {hab(k)| a,b in {o, ... , p-1} and a != 0}
