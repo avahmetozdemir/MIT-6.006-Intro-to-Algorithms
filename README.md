@@ -387,7 +387,7 @@ hab(k) = (((ak+b) mod p) mod m)
   allow. Assume T (1) 2 ⇥(1).
 
 |--------------|:-------------------:|
-| <img width="361" alt="lecture-6-1" src=""> | <img width="361" alt="lecture-6-2" src=""> |
+| <img width="361" alt="lecture-6-1" src="https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/lecture-6-1.png?raw=true"> | <img width="361" alt="lecture-6-2" src="https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/lecture-6-2.png?raw=true"> |
 
 ### Problem 1-2. Stone Searching
 
