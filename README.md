@@ -578,3 +578,42 @@ rather than separately.
     						a += 1
     		merge_sort(H2)
     		return D
+
+## Lecture 7- Linear Sorting
+
+**Last Time:**
+
+- Comparison model => Ω(logn) time to search
+- Do faster using RAM and direct access array
+
+  What was the problem with direct access array ? -> Space (much larger than n )
+
+- Space O(u), reduce space via hash h(k) : u-> N
+
+  How to fix that space problem? ->We can reduce the space by taking that larger key space from 0 to u, which could be very large, and map it down to a small space
+
+- Expected O(1) time dictionary ops!
+
+![hash-table]()
+
+![sorting-algorithms]()
+
+#### Comparison Model
+
+![draw-1]()
+
+**How could I use a direct access array to sort faster?**
+
+Instantiate a big direct access array, I take each one of the items in the things that I am trying to sort, I look at each one of their keys and I stick it in the direct accessory exactly where it needs to go in constant time.
+
+0 ---------k---------- (u-1) this algorithm takes O(n+u)
+
+- make Dynamic Access Array -> O(u)
+- store item x in index x.key -> n \* O(1)
+- walk down Dynamic Access Array and return items seen in order -> O(u)
+
+u = θ(n) => O(n)
+
+![draw-2]()
+
+![radix-sort]()
