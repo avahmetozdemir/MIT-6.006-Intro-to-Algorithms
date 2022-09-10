@@ -594,13 +594,13 @@ rather than separately.
 
 - Expected O(1) time dictionary ops!
 
-![hash-table]()
+![hash-table](https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/lecture-7-hash-table.png?raw=true)
 
-![sorting-algorithms]()
+![sorting-algorithms](https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/lecture-7-sorting-algo.png?raw=true)
 
 #### Comparison Model
 
-![draw-1]()
+![draw-1](https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/lecture-7-draw-1-1.png?raw=true)
 
 **How could I use a direct access array to sort faster?**
 
@@ -614,6 +614,6 @@ Instantiate a big direct access array, I take each one of the items in the thing
 
 u = θ(n) => O(n)
 
-![draw-2]()
+![draw-2](https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/lecture-7-draw-2.png?raw=true)
 
-![radix-sort]()
+![radix-sort](https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/lecture-7-radix-sort.png?raw=true)
