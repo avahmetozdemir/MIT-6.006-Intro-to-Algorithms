@@ -617,3 +617,149 @@ u = θ(n) => O(n)
 ![draw-2](https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/lecture-7-draw-2.png?raw=true)
 
 ![radix-sort](https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/lecture-7-radix-sort.png?raw=true)
+
+## Lecture 8 - Problem Session 3
+
+### Problem 3-2. Hash Sequence
+
+Hash tables are not only useful for implementing Set operations; they can be used to implement
+Sequences as well! (Recall the Set and Sequence interfaces were defined in Lecture and Recitation 02.) Given a hash table, describe how to use it as a black-box1 (using only its Set interface
+operations) to implement the Sequence interface such that:
+
+• build(A) runs in expected O(n) time,
+• get at and set at each run in expected O(1) time,
+• insert at and delete at each run in expected O(n) time, and
+• the four dynamic first/last operations each run in amortized expected O(1) time.
+
+**Solution:** To use a hash table H to implement the Sequence operations, store each Sequence item
+x in an object b with key b.key and value b.val = x, and we will store these keyed objects in the
+hash table. We also maintain the lowest key s stored in the hash table, to maintain invariant that
+the n stored objects have keys (s, . . . , s + n � 1), where the i
+th item in the Sequence is stored in
+the object with key s + i.
+
+To implement build(A), for each item xi in A = (x0, . . . , xn�1) construct its keyed object b,
+initially with key b.key = i, in worst-case O(1) time; then insert it into the hash table using Set
+insert(b) in expected O(1) time, for an expected total of O(n) time. Initializing s = 0 ensures
+the invariant is satisfied.
+
+To implement get at(i), return the value of the stored object with key s+i using Set find(s +
+i) in expected O(1) time, which is correct by the invariant. Similarly, to implement set at(i,
+x), find the object with key s + i using find(s + i) and change its value to x, also in expected
+O(1) time.
+
+To implement insert at(i, x), for each j from s + n � 1 down to s + i, remove the object b
+with key j using delete(j) in expected O(1) time, change its key to j + 1 in worst-case O(1)
+time, and then insert the object with insert(b) in expected O(1) time. Then, construct a keyed
+object b0 with value x and key s + i, and insert with insert(b’) in expected O(1) time, for an
+expected total of O(n) time. This operation restores the invariant for each affected item.
+Similarly, to implement delete at(i), remove the object b0 stored at s + i with delete(s +
+i) in expected O(1) time; then for each j from s+i+ 1 to s+n�1, remove the object b with key
+j using delete(j) in expected O(1) time, change its key to j � 1 in worst-case O(1) time, and
+then insert the object with insert(b) in expected O(1) time. Then return the value of object b0
+,
+for an expected total of O(n) time. This operation returns the correct value by the invariant, and
+restores the invariant for each affected item.
+
+To implement insert last(x) or delete last(), simply reduce to insert at(s + n) or
+delete at(s + n - 1) in expected O(1) time since no objects need to be shifted.
+To implement insert first(x), construct a keyed object b with value x and key s�1 and insert
+it with insert(b) in expected O(1) time. Then setting the stored value of s to s � 1 restores the
+invariant. Similarly for delete first(), remove the object with key s using delete(s) in
+expected O(1) time, and return the value of the object. Then setting the stored value of s to s + 1
+restores the invariant.
+
+### Problem 3-3. Critter sort
+
+Ashley Getem collects and trains Pocket Critters to fight other Pocket Critters in battle. She has
+collected n Critters in total, and she keeps track of a variety of statistics for each Critter Ci. Describe efficient2 algorithms to sort Ashley’s Critters based on each of the following keys:
+
+**(a) Species ID: an integer xi between �n and n (negative IDs are grumpy)**
+
+**Solution:** These integers are in a linearly bounded range, but are not positive. So
+take worst-case O(n) time to add n to each critter’s ID so that xi ≤ 2n = u for all i,
+sort them using counting sort in worst-case O(n+2n) = O(n) time, and then subtract
+n from each ID, again in worst-case O(n) time.
+
+**(b) Name: a unique string si containing at most 10dlg ne English letters**
+
+**Solution:** We do not know whether all si ∈ S are polynomially bounded in n; but we
+do know that h is. If some si ≥ h, it can certainly not be part of a pair of positive side lengths from S that sum to under h. So first perform a linear scan of S and remove all
+si ≥ h to construct set S0
+. Now the integers in S0 are each upper bounded by O(n6),
+so we can sort them in worst-case O(n + n logn n6) time using radix-sort, and store
+the output in an array A.
+Now we can sweep the sorted list using a two-finger algorithm similar to the merge
+step in merge sort to find a pair with the largest sum at most h, if such a pair exists. Specifically, initialize indices i = 0 and j = |S0
+| � 1, and repeat the following procedure, keeping track of the largest sum t found so far initialized to zero.
+If A[i] + A[j] ≤ h, then if t < A[i] + A[j], you have found a better pair, so set
+t = A[i] + A[j]; regardless A[k] + A[j] < t for all k ≤ i, so increase i by one. Otherwise if A[i] + A[j] > h, then A[i] + A[`] > h for all ` ≥ j, so decrease j by one. If j < i (or j = i and we want distinct si, sj ), then return False. This loop maintains the invariant that at the start of each loop, we have confirmed that A[k] + A[`] ≥ t
+for all k ≤ i ≤ j ≤ ` for which A[k] + A[`] ≤ h, so the algorithm is correct. Since
+each iteration of the loop takes O(1) time and decreases j � i decrease by one, and
+j � i = |S0
+| � 1 starts positive and ends when j � i < 0, this procedure takes at most
+O(n) time in the worst case.
+
+### Problem 3-5. Po-k-er Hands
+
+Meff Ja is a card shark who enjoys playing card games. He has found an unusual deck of cards,
+where each of the n cards in the deck is marked with a lowercase letter from the 26-character
+English alphabet. We represent a deck of cards as a sequence of letters, where the first letter
+corresponds to the top of the deck. Meff wants to play a game of Po-k-er with you. To begin the
+game, he deals you a Po-k-er hand of k cards in the following way:
+
+1. The deck D starts in a pile face down in a known order.
+2. Meff cuts the deck uniformly at random at some location i ∈ {0, . . . , n � 1},i.e., move the top i cards in order to the bottom of the deck.
+3. Meff then deals you the top k cards from the top of the cut deck.
+4. You sort your k cards alphabetically, resulting in your Po-k-er hand.
+
+Let P(D, i, k) be the Po-k-er hand resulting from cutting a deck D at location i. Then cutting
+deck D = ’abcdbc’ at location 2 would result in the deck ’cdbcab’, which would then yield
+the Po-4-er hand P(D, 2, 4) = ’bccd’. From a given starting deck, many hands are possible
+depending on where the deck is cut. Meff wants to know the most likely Po-k-er hand for a given
+deck. Given that the most likely Po-k-er hand is not necessarily unique, Meff always prefers the
+lexicographically smallest hand.
+
+**(a)** Describe a data structure that can be built in O(n) time from a deck D of n cards and
+integer k, after which it can support same(i, j): a constant-time operation which
+returns True if P(D, i, k) = P(D, j, k) and False otherwise.
+
+**Solution:** We build a direct access array mapping each index i ∈ {0, . . . , n � 1} to
+a frequency table of the letters in hand P(D, i, k), specifically a direct access array
+A of length 26 where A[j] corresponds to the number of times the (j + 1)th letter
+of the English alphabet occurs in the hand. The frequency table of hand P(D, 0, k)
+can be computed in O(k) time by simply looping through the cards in the hand and
+adding them to the frequency table. Then given the frequency table of P(D, i, k), we
+can compute the frequency table of P(D, i + 1, k) in constant time by subtracting one
+from letter D[i] and adding one to letter D[i + k]. Building the above hash table then
+takes O(k) + nO(1) = O(n) time. To support same(i, j), look up indices i and j
+in the direct access array in constant time. If the corresponding frequency tables are
+the same, then the hands must also match. We can check if they match in worst-case
+constant time since each frequency has constant length (i.e., 26), so this operation
+takes worst-case O(1) time. Students my use a hash table to achieve expected O(1)
+time.
+
+**(b)** Given a deck of n cards, describe an O(n)-time algorithm to find the most likely Po-ker hand, breaking ties lexicographically. State whether your algorithm’s running time is worst-case, amortized, and/or expected.
+
+**Solution:** Build the data structure from part (a) in worst-case O(n) time, specifically
+a direct access array of hand frequency tables. Now, compute the frequency of each
+hand directly: loop through the direct access array and add each hand frequency table
+to a hash table T mapping to value 1; if a hand table h already exists in T, increase
+T[h] by 1. This procedure performs one hash table operation for each of the n hand
+tables, so it runs in expected O(n) time. Next, find the largest frequency of any hand
+directly by looping through all hands in T, keeping track of f the largest frequency
+seen in worst-case O(n) time. Then, construct a list of hand tables with frequency
+f directly by looping through all hands in T again, appending to the end of a dynamic array A every hand table that has frequency f, also in worst-case O(n) time.
+The lexicographically first hand will be the one whose hand frequency table is lexicographically last (e.g., (1,0,...)>(0,1,...) but ’a...’<’b...’), so loop
+through the hand tables and keep track of the lexicographically last hand table t in
+worst-case O(n) time. Lastly, convert hand table t back into a hand by concatenating
+k letters in order based on their frequency in worst-case O(k) time, and then return
+the hand. Then in total, this procedure runs in expected O(n) time.
+
+We can reduce to worst-case O(n) time using radix sort instead of a hash table to
+count the frequencies of hand tables. Namely, we apply tuple/radix sort to the data
+structure from part (a). Each hand frequency table consists of 26 numbers between 0
+and n, so we can treat them as a base-(n + 1) integer of 26 digits. Sorting by each
+digit from least to most significant, we put the hand frequency tables into lexically increasing order. Now a single scan through the array, at each step checking whether the
+hand frequency table matches the previous, lets us compute the frequency of each table. A scan of these occurrence frequencies lets us find the maximum frequency f, and
+another scan of the array lets us find the lexicographically last hand with frequency f.
