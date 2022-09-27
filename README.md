@@ -783,7 +783,7 @@ another scan of the array lets us find the lexicographically last hand with freq
 
 ![binary-note-1](https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/binary-note.png?raw=true)
 
-![subtree-ops](url)
+![subtree-ops](https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/subtree-opss.png?raw=true)
 
 **Sequence:**
 trav. order = sequence order
