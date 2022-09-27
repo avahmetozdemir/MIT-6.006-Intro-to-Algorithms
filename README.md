@@ -773,7 +773,7 @@ another scan of the array lets us find the lexicographically last hand with freq
 - set binary tree(Binary Search Tree = BST)
 - sequence binary tree via subtree size augmentation
 
-![data-structures]()
+![data-structures](https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/data-structures.png?raw=true)
 
 ### What is Binary Tree ?
 
@@ -781,7 +781,7 @@ another scan of the array lets us find the lexicographically last hand with freq
 
 ![binary-tree-pointers](https://bournetocode.com/projects/AQA_A_Theory/pages/img/binaryTreeSimple.png)
 
-![binary-note-1](url)
+![binary-note-1](https://github.com/avahmetozdemir/MIT-6.006-Intro-to-Algorithms/blob/main/notes/binary-note.png?raw=true)
 
 ![subtree-ops](url)
 
