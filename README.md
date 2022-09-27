@@ -763,3 +763,31 @@ and n, so we can treat them as a base-(n + 1) integer of 26 digits. Sorting by e
 digit from least to most significant, we put the hand frequency tables into lexically increasing order. Now a single scan through the array, at each step checking whether the
 hand frequency table matches the previous, lets us compute the frequency of each table. A scan of these occurrence frequencies lets us find the maximum frequency f, and
 another scan of the array lets us find the lexicographically last hand with frequency f.
+
+## Lecture 9 - Binary Trees, Part 1
+
+### Today :
+
+- binary tree & traversal order
+- subtree ops: first, successor, insert, delete
+- set binary tree(Binary Search Tree = BST)
+- sequence binary tree via subtree size augmentation
+
+![data-structures]()
+
+### What is Binary Tree ?
+
+![binary-tree](https://upload.wikimedia.org/wikipedia/commons/5/5e/Binary_tree_v2.svg)
+
+![binary-tree-pointers](https://bournetocode.com/projects/AQA_A_Theory/pages/img/binaryTreeSimple.png)
+
+![binary-note-1](url)
+
+![subtree-ops](url)
+
+**Sequence:**
+trav. order = sequence order
+
+**Set:**
+trav order = increasing item.key
+find(k)
